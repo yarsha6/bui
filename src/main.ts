@@ -1,129 +1,24 @@
-import * as BUI from "@thatopen/ui"
+import './style.css'
+import typescriptLogo from './typescript.svg'
+import viteLogo from '/vite.svg'
+import { setupCounter } from './counter.ts'
 
-BUI.Manager.registerComponents()
+document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
+  <div>
+    <a href="https://vitejs.dev" target="_blank">
+      <img src="${viteLogo}" class="logo" alt="Vite logo" />
+    </a>
+    <a href="https://www.typescriptlang.org/" target="_blank">
+      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
+    </a>
+    <h1>Vite + TypeScript</h1>
+    <div class="card">
+      <button id="counter" type="button"></button>
+    </div>
+    <p class="read-the-docs">
+      Click on the Vite and TypeScript logos to learn more
+    </p>
+  </div>
+`
 
-const viewsList = document.getElementById("views-list") as BUI.Table
-
-viewsList.data = [
-  {
-    data: {
-      Name: "Structural Plans"
-    },
-    children: [
-      {
-        data: {
-          Name: "Level 01"
-        }
-      },
-      {
-        data: {
-          Name: "Level 02"
-        }
-      },
-      {
-        data: {
-          Name: "Level 03"
-        }
-      },
-    ]
-  },
-  {
-    data: {
-      Name: "Floor Plans"
-    },
-    children: [
-      {
-        data: {
-          Name: "Level 01"
-        }
-      }
-    ]
-  },
-  {
-    data: {
-      Name: "Ceiling Plans"
-    },
-    children: [
-      {
-        data: {
-          Name: "Level 01"
-        }
-      }
-    ]
-  },
-  {
-    data: {
-      Name: "3D Views"
-    },
-    children: [
-      {
-        data: {
-          Name: "Presentation View"
-        }
-      }
-    ]
-  },
-  {
-    data: {
-      Name: "Elevations"
-    },
-    children: [
-      {
-        data: {
-          Name: "North"
-        }
-      },
-      {
-        data: {
-          Name: "South"
-        }
-      },
-      {
-        data: {
-          Name: "East"
-        }
-      },
-      {
-        data: {
-          Name: "West"
-        }
-      }
-    ]
-  },
-  {
-    data: {
-      Name: "Sections"
-    },
-    children: [
-      {
-        data: {
-          Name: "Section 01"
-        }
-      }
-    ]
-  },
-  {
-    data: {
-      Name: "Detail Views"
-    },
-    children: [
-      {
-        data: {
-          Name: "Flashing"
-        }
-      }
-    ]
-  },
-  {
-    data: {
-      Name: "Renderings"
-    },
-    children: [
-      {
-        data: {
-          Name: "Exterior Main Entrance"
-        }
-      }
-    ]
-  }
-]
+setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
