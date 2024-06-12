@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + TS</title>
+    <style>
+      :root {
+        font-family: sans-serif;
+      }
+
+      body {
+      margin: 0;
+      display: flex;
+      height: 100vh;
+      width: 100vw;
+      }
+
+      #app {
+        display: grid;
+        gap: 1px;
+        height: 100%;
+        width: 100%;
+        grid-template: 
+          "ribbon ribbon ribbon" 8rem
+          "propertiespanel viewport viewport" 1fr
+          "viewpanel viewport viewport" 0.5fr
+          "viewpanel viewbar commandbar" 2rem
+          /20rem 1fr 1fr
+        ;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <bim-tabs style="grid-area: ribbon">
+        <bim-tab label="Manage">
+          <div style="display: flex;">
+            <bim-toolbar active>
+              <bim-toolbar-section label="Edit">
+                <bim-button vertical label="Undo" icon="material-symbols:undo"></bim-button>
+                <bim-button vertical label="Redo" icon="material-symbols:redo"></bim-button>
+              </bim-toolbar-section>
+              <bim-toolbar-section label="General">
+                <bim-button vertical label="Project Properties" icon="lucide:table-properties" 
+                tooltip-title="Project Properties" tooltip-text="Displays the attributes list for the current project."></bim-button>
+                <bim-button vertical label="Project Materials" icon="gis:finish" 
+                tooltip-title="Project Materials" tooltip-text="Displays the materials list for the current project."></bim-button>
+                <bim-button vertical label="Project Units" icon="gis:measure"
+                tooltip-title="Project Units" tooltip-text="Displays the units for the current project."></bim-button>
+                <bim-button vertical label="Project Information" icon="uil:file-info-alt"
+                tooltip-title="Project Information" tooltip-text="Displays the overall information for the current project.This includes the asset name, owner, and location."></bim-button>
+                <bim-button vertical label="Design Options" icon="clarity:design-line"
+                tooltip-title="Design Options" tooltip-text="Displays the design options for the current project."></bim-button>
+                <bim-button vertical label="Phasing" icon="material-symbols:timeline"
+                tooltip-title="Phasing" tooltip-text="Displays the project phase for the current project."></bim-button>
+              </bim-toolbar-section>
+              <bim-toolbar-section label="Inquiry">
+                <bim-button vertical label="Warnings" icon="fluent:warning-24-regular"
+                tooltip-title="Warnings" tooltip-text="Displays a list of messages that can be resolved or ignored."></bim-button>
+                <bim-button vertical label="Select by ID" icon="material-symbols:barcode-scanner-rounded"
+                tooltip-title="Select by ID" tooltip-text="Select specific asset(s) by globally unique ID."></bim-button>
+              </bim-toolbar-section>
+            </bim-toolbar>
+          </div>
+        </bim-tab>
+
+        <bim-tab label="Insert">
+          <div style="display: flex;">
+            <bim-toolbar active>
+              <bim-toolbar-section label="Links">
+                <bim-button vertical label="Link IFC" icon="flowbite:link-outline"
+                tooltip-title="Link IFC" tooltip-text="Links an IFC file to the current project."></bim-button>
+                <bim-button vertical label="Link CAD" icon="flowbite:link-outline"
+                tooltip-title="Link CAD" tooltip-text="Links a CAD file to the current project."></bim-button>
+                <bim-button vertical label="Link Topography" icon="flowbite:link-outline"
+                tooltip-title="Link Topography" tooltip-text="Links a topography file to the current project."></bim-button>
+                <bim-button vertical label="Link Point Cloud" icon="flowbite:link-outline"
+                tooltip-title="Link Point Cloud" tooltip-text="Links a point cloud file to the current project."></bim-button>
+                <bim-button vertical label="Manage Links" icon="fluent-mdl2:table-link"
+                tooltip-title="Manage Links" tooltip-text="Manages inserted links for the current project."></bim-button>
+              </bim-toolbar-section>
+            </bim-toolbar>
+          </div>
+        </bim-tab>
+
+        <bim-tab label="Drawings and Documents">
+          <div style="display: flex;">
+            <bim-toolbar active>
+              <bim-toolbar-section label="Drawings">
+                <bim-panel-section vertical label="Create View" icon="grommet-icons:new-window">
+                  <bim-button label="3D View" icon="codicon:symbol-method"></bim-button>
+                  <bim-button label="Section" icon="fluent:notebook-section-arrow-right-24-regular"></bim-button>
+                  <bim-button label="Callout" icon="system-uicons:speech-bubble"></bim-button>
+                  <bim-button label="Plan" icon="mdi:floor-plan"></bim-button>
+                  <bim-button label="Duplicate View" icon="grommet-icons:duplicate"></bim-button>
+                </bim-panel-section>
+                <bim-button vertical label="Sheets" icon="material-symbols:bottom-sheets-outline-sharp"></bim-button>
+                <bim-button vertical label="Revisions" icon="hugeicons:task-edit-01"></bim-button>
+              </bim-toolbar-section>
+              <bim-toolbar-section label="Documents">
+                <bim-button vertical label="Schedules" icon="grommet-icons:schedules"></bim-button>
+                <bim-button vertical label="Reports" icon="icon-park-outline:table-report"></bim-button>
+                <bim-button vertical label="References" icon="ph:file"></bim-button>
+              </bim-toolbar-section>
+            </bim-toolbar>
+          </div>
+        </bim-tab>
+
+        <bim-tab label="Annotate">
+          <div style="display:flex;">
+            <bim-toolbar active>
+              <bim-toolbar-section label="Text">
+                <bim-button vertical label="Add Text" icon="ion:text"></bim-button>
+                <bim-button vertical label="Find and Replace" icon="material-symbols:find-replace"></bim-button>
+              </bim-toolbar-section>
+              <bim-toolbar-section label="Detail">
+                <bim-button vertical label="Dimension" icon="radix-icons:dimensions"></bim-button>
+                <bim-button vertical label="Detail Tools" icon="material-symbols:draw-abstract-outline"></bim-button>
+                <bim-button vertical label="Tag" icon="grommet-icons:tag"></bim-button>
+                <bim-button vertical label="Symbol" icon="ph:checkerboard-fill"></bim-button>
+                <bim-button vertical label="Snaps" icon="ph:magnet-straight"></bim-button>
+              </bim-toolbar-section>
+            </bim-toolbar>
+          </div> 
+        </bim-tab>
+
+        <bim-tab label="Analyze">
+          <div style="display:flex;">
+            <bim-toolbar active>
+              <bim-toolbar-section label="Design">
+                <bim-button vertical label="Structural Analysis" icon="icon-park-outline:engineering-brand"></bim-button>
+                <bim-button vertical label="Electrical Analysis" icon="material-symbols:electrical-services"></bim-button>
+              </bim-toolbar-section>
+              <bim-toolbar-section label="Operations">
+                <bim-button vertical label="Spaces and Zones" icon="material-symbols:space-dashboard-outline"></bim-button>
+                <bim-button vertical label="Energy Optimization" icon="iconoir:web-window-energy-consumption"></bim-button>
+                <bim-button vertical label="Route Analysis" icon="material-symbols:alt-route"></bim-button>
+                <bim-button vertical label="Carbon Accounting" icon="carbon:carbon-ui-builder"></bim-button>
+                <bim-button vertical label="Costing" icon="map:accounting"></bim-button>
+              </bim-toolbar-section>
+              <bim-toolbar-section label="Output">
+                <bim-button vertical label="Results Manager" icon="carbon:result"></bim-button>
+              </bim-toolbar-section>
+            </bim-toolbar>
+          </div>
+        </bim-tab>
+
+        <bim-tab label="Coordination">
+          <div style="display:flex;">
+            <bim-toolbar active>
+              <bim-toolbar-section label="Collaborate">
+                <bim-button vertical label="Requests" icon="material-symbols:data-info-alert-rounded"></bim-button>
+                <bim-button vertical label="Manage Models" icon="carbon:inventory-management"></bim-button>
+                <bim-button vertical label="Share Views" icon="fluent-mdl2:manager-self-service"></bim-button>
+              </bim-toolbar-section>
+              <bim-toolbar-section label="Validation">
+                <bim-button vertical label="Check Systems" icon="grommet-icons:validate"></bim-button>
+                <bim-button vertical label="Clashes" icon="fluent-emoji-high-contrast:collision"></bim-button>
+                <bim-button vertical label="IDS" icon="mdi:folder-information-outline"></bim-button>
+              </bim-toolbar-section>
+            </bim-toolbar>
+          </div>
+        </bim-tab>
+      </bim-tabs>>
+
+      <bim-tab style="grid-area: viewbar">
+          <bim-toolbar active>
+            <bim-button icon="lucide:drafting-compass" tooltip-title="Scale"></bim-button>
+            <bim-button icon="gg:style" tooltip-title="Visual Style"></bim-button>
+            <bim-button icon="ri:lightbulb-line" tooltip-title="Hide/Isolate"></bim-button>
+            <bim-button icon="icon-park-outline:graphic-design" tooltip-title="Graphics"></bim-button>
+            <bim-button icon="material-symbols:crop-sharp" tooltip-title="Section Box"></bim-button>
+          </bim-toolbar>
+      </bim-tab>
+
+      <bim-tab style="grid-area: commandbar">
+          <bim-toolbar active>
+            <bim-button icon="iconoir:wrench" tooltip-title="Customize"></bim-button>
+            <bim-button label="Type a command..."></bim-button>
+          </bim-toolbar>
+        </bim-button>
+      </bim-tab>
+
+      <bim-panels-container style="grid-area: propertiespanel">
+        <bim-panel label="Properties"></bim-panel>
+      </bim-panels-container>
+
+      <bim-panels-container style="grid-area: viewpanel">
+        <bim-panel label="Project Browser">
+          <div style="display: flex; gap: 0.5rem;">
+            <bim-panel-section label="Views">
+              <bim-table id="views-list" headers-hidden></bim-table>
+            </bim-panel-section>
+            <!-- <bim-panel-section label="Legends"></bim-panel-section>
+            <bim-panel-section label="Schedules"></bim-panel-section>
+            <bim-panel-section label="Sheets"></bim-panel-section>
+            <bim-panel-section label="Families"></bim-panel-section>
+            <bim-panel-section label="Groups"></bim-panel-section> -->
+          </div>
+        </bim-panel>
+      </bim-panels-container>
+
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
